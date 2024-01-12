@@ -9,7 +9,6 @@
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/background"
         android:orientation="horizontal"
         android:padding="8dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -41,12 +40,14 @@
             android:textSize="18sp"
             app:cornerRadius="20dp" />
     </LinearLayout>
+
     <FrameLayout
         android:id="@+id/frame_layout"
         android:layout_width="360dp"
         android:layout_height="564dp"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="76dp"
-        tools:ignore="MissingConstraints">
-    </FrameLayout>
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+        tools:ignore="MissingConstraints"></FrameLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

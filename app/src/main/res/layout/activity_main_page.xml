@@ -26,6 +26,7 @@
             android:textSize="35sp"
             android:textAlignment="viewStart"
             android:drawableEnd="@drawable/baseline_navigate_next_24"
+            android:drawableTint="@color/orange"
             android:backgroundTint="@color/white"
             app:cornerRadius = "20dp"/>
         <Button
@@ -38,6 +39,7 @@
             android:textSize="35sp"
             android:textAlignment="viewStart"
             android:drawableEnd="@drawable/baseline_navigate_next_24"
+            android:drawableTint="@color/orange"
             android:backgroundTint="@color/white"
             app:cornerRadius = "20dp"/>
         <Button
