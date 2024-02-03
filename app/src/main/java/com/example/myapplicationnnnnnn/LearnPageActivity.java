@@ -10,13 +10,16 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-public class LearnFragmentActivity extends AppCompatActivity {
+public class LearnPageActivity extends AppCompatActivity {
 
     private Button notes_btn, intervals_btn, back_btn;
     private NotesFragment firstFragment = new NotesFragment();
+    private IntervalsFragment secondFragment = new IntervalsFragment();
     @Override    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        getSupportActionBar().hide();
+
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_learn_fragment);
+        setContentView(R.layout.activity_learn_page);
         notes_btn = findViewById(R.id.notes);
         intervals_btn = findViewById(R.id.intervals);
         back_btn = findViewById(R.id.button_back);
@@ -37,21 +40,22 @@ public class LearnFragmentActivity extends AppCompatActivity {
         back_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(LearnFragmentActivity.this, MainPageActivity.class);
+                Intent intent = new Intent(LearnPageActivity.this, MainPageActivity.class);
                 startActivity(intent);
             }
         });
 
     }
-
-
-
-
-    private void setNewFragment() {
-    }
+    private void setNewFragment() {}
 
     private void setNewFragment(Fragment fragment) {
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         ft.replace(R.id.frame_layout, fragment);
         ft.commit();    }
+
+
+
+
+
+
 }

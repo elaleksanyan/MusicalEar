@@ -1,42 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginTop="77dp"
-    android:background="@color/white"
-    android:layout_marginLeft="25dp"
-    android:layout_marginRight="50dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/background"
     android:visibility="visible"
     android:orientation="vertical"
-    tools:context=".NotesFragment" >
+    android:gravity="center"
+    tools:context=".NotesFragment">
+
+    <ImageView
+        android:id="@+id/note_e"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/note_c"
+        />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:gravity="center_horizontal"
+        >
 
-        <ImageView
-            android:id="@+id/note_C"
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="25dp"
-            android:src="@drawable/note_c" />
+            android:text="C,c"
+            android:textSize="50dp"
+            android:paddingHorizontal="25dp"
+            />
+
         <Button
-            android:id="@+id/next"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:id="@+id/next_note"
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:paddingHorizontal="9dp"
+            android:drawableRight="@drawable/baseline_navigate_next_24"
+            android:drawableTint="@color/orange"
             android:backgroundTint="@color/white"
-            android:layout_marginLeft="25dp"
-            android:drawableEnd="@drawable/baseline_navigate_next_24" />
+            app:cornerRadius = "20dp"/>
+
     </LinearLayout>
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textAlignment="center"
-        android:text="C,c"
-        android:textSize="35dp"
-        android:textColor="@color/black"/>
+
+
+
+
+
 </LinearLayout>

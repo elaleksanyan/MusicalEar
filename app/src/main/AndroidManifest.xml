@@ -15,7 +15,7 @@
             android:name=".PlayPageActivity"
             android:exported="false" />
         <activity
-            android:name=".LearnFragmentActivity"
+            android:name=".LearnPageActivity"
             android:exported="false" />
         <activity
             android:name=".LeaderboardPageActivity"
@@ -24,7 +24,7 @@
             android:name=".MainPageActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".LoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

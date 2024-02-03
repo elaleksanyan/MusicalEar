@@ -15,6 +15,9 @@ public class MainPageActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        getSupportActionBar().hide();
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_page);
 
@@ -25,7 +28,7 @@ public class MainPageActivity extends AppCompatActivity {
         learn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainPageActivity.this, LearnFragmentActivity.class);
+                Intent intent = new Intent(MainPageActivity.this, LearnPageActivity.class);
                 startActivity(intent);
             }
         });
