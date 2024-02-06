@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -16,17 +17,22 @@ public class LoginActivity extends AppCompatActivity {
 
     EditText username;
     EditText password;
+    TextView signupText;
     Button loginButton;
 
     @SuppressLint("WrongViewCast")
-    @Override    protected void onCreate(Bundle savedInstanceState) {
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
         getSupportActionBar().hide();
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
+
         username = findViewById(R.id.login_username);
         password = findViewById(R.id.login_password);
         loginButton = findViewById(R.id.login_button);
+        signupText = findViewById(R.id.signup);
+
         loginButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -39,11 +45,11 @@ public class LoginActivity extends AppCompatActivity {
                 }            }
         });
 
-//        signupText.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(MainActivity.this, GoogleSignup.class);
-//            }
-//        });
+        signupText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setContentView(R.layout.activity_signup);
+            }
+        });
 
     }}
