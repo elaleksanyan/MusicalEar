@@ -12,7 +12,7 @@
         android:theme="@style/Theme.MyApplicationnnnnnn"
         tools:targetApi="31">
         <activity
-            android:name=".SignupActivity"
+            android:name=".Signup"
             android:exported="false" />
         <activity
             android:name=".PlayPageActivity"

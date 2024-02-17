@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "27025827566",
+    "project_id": "musical-ear-6133d",
+    "storage_bucket": "musical-ear-6133d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:27025827566:android:44d71a2d8c912a392a75ff",
+        "android_client_info": {
+          "package_name": "com.example.myapplicationnnnnnn"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDXeAyWlEVl-i_WQSS92-oJLNWypAkJfYg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

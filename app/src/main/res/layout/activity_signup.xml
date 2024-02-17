@@ -7,7 +7,8 @@
     android:background="@drawable/background"
     android:gravity="center"
     android:orientation="vertical"
-    tools:context=".SignupActivity">
+    android:clickable="true"
+    tools:context=".Signup">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
@@ -45,7 +46,6 @@
                 android:padding="8dp"
                 android:textColor="@color/black" />
 
-
             <EditText
                 android:id="@+id/signup_email"
                 android:layout_width="match_parent"
@@ -59,7 +59,7 @@
                 android:textColor="@color/black" />
 
             <EditText
-                android:id="@+id/signup_password"
+                android:id="@+id/signup_pass"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginTop="20dp"
@@ -72,18 +72,19 @@
                 android:textColor="@color/black" />
 
 
+
             <Button
-                android:id="@+id/login_button"
+                android:id="@+id/signup_btn"
                 android:layout_width="match_parent"
-                android:layout_height="60dp"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:backgroundTint="@color/orange"
-                android:text="sign up"
+                android:text="SignUp"
                 android:textSize="18sp"
                 />
 
             <TextView
-                android:id="@+id/back_to_login"
+                android:id="@+id/signedup"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"

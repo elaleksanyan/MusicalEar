@@ -31,13 +31,14 @@ public class LoginActivity extends AppCompatActivity {
         username = findViewById(R.id.login_username);
         password = findViewById(R.id.login_password);
         loginButton = findViewById(R.id.login_button);
-        signupText = findViewById(R.id.signup);
+        signupText = findViewById(R.id.create_acc);
 
         loginButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
-                if (username.getText().toString().equals("") && password.getText().toString().equals("")){                    Toast.makeText(LoginActivity.this, "Login Successful!", Toast.LENGTH_SHORT).show();
+                if (username.getText().toString().equals("") && password.getText().toString().equals("")){
+                    Toast.makeText(LoginActivity.this, "Login Successful!", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(LoginActivity.this, MainPageActivity.class);
                     startActivity(intent);
                 }else{
