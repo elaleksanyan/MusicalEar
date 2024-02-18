@@ -23,7 +23,19 @@ public class LearnPageActivity extends AppCompatActivity {
         notes_btn = findViewById(R.id.notes);
         intervals_btn = findViewById(R.id.intervals);
 
+        notes_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setContentView(R.layout.fragment_notes);
+            }
+        });
 
+        intervals_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setContentView(R.layout.fragment_intervals);
+            }
+        });
 
     }
 
