@@ -13,7 +13,7 @@ import android.widget.Button;
 public class LearnPageActivity extends AppCompatActivity {
 
     private Button notes_btn, intervals_btn;
-    private NotesFragment firstFragment = new NotesFragment();
+
     private IntervalsFragment secondFragment = new IntervalsFragment();
     @Override    protected void onCreate(@Nullable Bundle savedInstanceState) {
         getSupportActionBar().hide();
