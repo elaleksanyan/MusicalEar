@@ -59,8 +59,7 @@ public class PlayPageActivity extends AppCompatActivity {
 
         } else {
             selectedAnswer = button.getText().toString();
-            Log.i("ABCD", selectedAnswer);
-            button.setBackgroundColor(Color.GREEN);
+            button.setBackgroundColor(Color.YELLOW);
         }
     }
     private void loadNewQuestion() {
@@ -91,12 +90,10 @@ public class PlayPageActivity extends AppCompatActivity {
                 .show();
     }
     private void restartQuiz() {
-        Log.i("AlaBalaNica", Integer.toString(score));
         score = 0;
         currentQuestionIndex = 0;
         selectedAnswer = "";
         okButton.setEnabled(true);
         loadNewQuestion();
-        Log.i("AlaBalaNica", Integer.toString(score));
     }
 }
