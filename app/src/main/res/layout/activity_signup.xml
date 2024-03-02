@@ -64,6 +64,19 @@
                 android:inputType="textPassword"
                 android:padding="8dp"
                 android:textColor="@color/black" />
+
+            <EditText
+                android:id="@+id/signup_confirmpassword"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/costom_edittext"
+                android:drawableLeft="@drawable/baseline_lock_24"
+                android:drawablePadding="8dp"
+                android:hint="Confrim password"
+                android:inputType="textPassword"
+                android:padding="8dp"
+                android:textColor="@color/black" />
             <Button
                 android:id="@+id/signup_btn"
                 android:layout_width="match_parent"
@@ -72,9 +85,10 @@
                 android:backgroundTint="@color/orange"
                 android:text="SignUp"
                 android:textSize="18sp"
+                android:clickable="true"
                 />
             <TextView
-                android:id="@+id/signed_up"
+                android:id="@+id/loginRedirect"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
