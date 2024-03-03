@@ -1,6 +1,4 @@
 package com.example.myapplicationnnnnnn;
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.Intent;
@@ -15,6 +13,9 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -26,92 +27,42 @@ import com.google.firebase.auth.FirebaseUser;
 public class LoginActivity extends AppCompatActivity {
 
     private FirebaseAuth auth;
-    private EditText loginEmail, loginPassword;
+    private EditText loginUsername, loginPassword;
     private Button loginButton;
-    private TextView signupRedirectText, forgotPasswordText;
-    private CheckBox remember;
+    private TextView createAccountText, forgotPasswordText;
+    private CheckBox rememberMe;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         getSupportActionBar().hide();
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
 
         auth = FirebaseAuth.getInstance();
-        loginEmail = findViewById(R.id.login_username);
+        loginUsername = findViewById(R.id.login_username);
         loginPassword = findViewById(R.id.login_password);
         loginButton = findViewById(R.id.login_button);
-        signupRedirectText = findViewById(R.id.create_acc);
-        remember = findViewById(R.id.remember);
+        createAccountText = findViewById(R.id.create_acc);
+        rememberMe = findViewById(R.id.remember);
         forgotPasswordText = findViewById(R.id.forgetpassword);
 
         // Check if user previously opted for "Remember Me"
         SharedPreferences sharedPref = getSharedPreferences("loginPrefs", Context.MODE_PRIVATE);
-        boolean rememberMe = sharedPref.getBoolean("rememberMe", false);
+        boolean rememberMeChecked = sharedPref.getBoolean("rememberMe", false);
 
-        if (rememberMe) {
+        if (rememberMeChecked) {
             String savedEmail = sharedPref.getString("username", "");
             String savedPassword = sharedPref.getString("password", "");
 
             if (!savedEmail.isEmpty() && !savedPassword.isEmpty()) {
-                auth.signInWithEmailAndPassword(savedEmail, savedPassword)
-                        .addOnSuccessListener(new OnSuccessListener<AuthResult>() {
-                            @Override
-                            public void onSuccess(AuthResult authResult) {
-                                if (auth.getCurrentUser().isEmailVerified()) {
-                                    Toast.makeText(LoginActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
-                                    startActivity(new Intent(LoginActivity.this, MainPageActivity.class));
-                                    finish();
-                                } else {
-                                    Toast.makeText(LoginActivity.this, "Email not verified", Toast.LENGTH_SHORT).show();
-                                }
-                            }
-                        }).addOnFailureListener(new OnFailureListener() {
-                            @Override
-                            public void onFailure(@NonNull Exception e) {
-                                Toast.makeText(LoginActivity.this, "Auto Login Failed", Toast.LENGTH_SHORT).show();
-                            }
-                        });
+                autoLogin(savedEmail, savedPassword);
             }
         }
-
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String email = loginEmail.getText().toString().trim();
-                String pass = loginPassword.getText().toString();
-
-                if (email.isEmpty()) {
-                    loginEmail.setError("Email cannot be empty");
-                } else if (!Patterns.EMAIL_ADDRESS.matcher(email.toLowerCase()).matches()) {
-                    loginEmail.setError("Please enter a valid email");
-                } else {
-                    if (!pass.isEmpty()) {
-                        auth.signInWithEmailAndPassword(email, pass)
-                                .addOnSuccessListener(new OnSuccessListener<AuthResult>() {
-                                    @Override
-                                    public void onSuccess(AuthResult authResult) {
-                                        if (auth.getCurrentUser().isEmailVerified()) {
-                                            Toast.makeText(LoginActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
-                                            if (remember.isChecked()) {
-                                                saveCredentials(email, pass);
-                                            }
-                                            startActivity(new Intent(LoginActivity.this, MainPageActivity.class));
-                                            finish();
-                                        } else {
-                                            Toast.makeText(LoginActivity.this, "Email not verified", Toast.LENGTH_SHORT).show();
-                                        }
-                                    }
-                                }).addOnFailureListener(new OnFailureListener() {
-                                    @Override
-                                    public void onFailure(@NonNull Exception e) {
-                                        Toast.makeText(LoginActivity.this, "Login Failed", Toast.LENGTH_SHORT).show();
-                                    }
-                                });
-                    } else {
-                        loginPassword.setError("Password cannot be empty");
-                    }
-                }
+                loginUser();
             }
         });
 
@@ -122,7 +73,7 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        signupRedirectText.setOnClickListener(new View.OnClickListener() {
+        createAccountText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(LoginActivity.this, Signup.class));
@@ -130,7 +81,66 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
-    public void openPasswordReset() {
+    private void autoLogin(String email, String password) {
+        auth.signInWithEmailAndPassword(email, password)
+                .addOnSuccessListener(new OnSuccessListener<AuthResult>() {
+                    @Override
+                    public void onSuccess(AuthResult authResult) {
+                        handleLoginSuccess();
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(LoginActivity.this, "Auto Login Failed", Toast.LENGTH_SHORT).show();
+                    }
+                });
+    }
+
+    private void loginUser() {
+        String email = loginUsername.getText().toString().trim();
+        String password = loginPassword.getText().toString();
+
+        if (email.isEmpty() || password.isEmpty()) {
+            Toast.makeText(this, "Email and password cannot be empty", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        if (!Patterns.EMAIL_ADDRESS.matcher(email.toLowerCase()).matches()) {
+            Toast.makeText(this, "Please enter a valid email", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        auth.signInWithEmailAndPassword(email, password)
+                .addOnSuccessListener(new OnSuccessListener<AuthResult>() {
+                    @Override
+                    public void onSuccess(AuthResult authResult) {
+                        handleLoginSuccess();
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(LoginActivity.this, "Login Failed", Toast.LENGTH_SHORT).show();
+                    }
+                });
+    }
+
+    private void handleLoginSuccess() {
+        FirebaseUser currentUser = auth.getCurrentUser();
+
+        if (currentUser != null && currentUser.isEmailVerified()) {
+            Toast.makeText(LoginActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
+
+            if (rememberMe.isChecked()) {
+                saveCredentials(loginUsername.getText().toString(), loginPassword.getText().toString());
+            }
+
+            startActivity(new Intent(LoginActivity.this, MainPageActivity.class));
+            finish();
+        } else {
+            Toast.makeText(LoginActivity.this, "Email not verified", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private void openPasswordReset() {
         Intent intent = new Intent(this, PasswordResetActivity.class);
         startActivity(intent);
     }
@@ -149,5 +159,4 @@ public class LoginActivity extends AppCompatActivity {
             }
         }.execute();
     }
-
 }
