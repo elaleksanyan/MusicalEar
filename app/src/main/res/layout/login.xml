@@ -41,7 +41,7 @@
                 android:background="@drawable/costom_edittext"
                 android:drawableLeft="@drawable/baseline_person_24"
                 android:drawablePadding="8dp"
-                android:hint="Email/Username"
+                android:hint="Email"
                 android:padding="8dp"
                 android:textColor="@color/black" />
 

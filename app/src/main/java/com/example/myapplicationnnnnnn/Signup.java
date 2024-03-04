@@ -18,7 +18,7 @@ import com.google.firebase.auth.FirebaseUser;
 public class Signup extends AppCompatActivity {
 
     private FirebaseAuth auth;
-    private EditText signupUsername, signupEmail, signupPassword, confirmPassword;
+    private EditText  signupEmail, signupPassword, confirmPassword;
     private Button signupButton;
     private TextView loginRedirect;
 
@@ -30,7 +30,6 @@ public class Signup extends AppCompatActivity {
         setContentView(R.layout.activity_signup);
 
         auth = FirebaseAuth.getInstance();
-        signupUsername = findViewById(R.id.signup_username);
         signupEmail = findViewById(R.id.signup_email);
         signupPassword = findViewById(R.id.signup_pass);
         confirmPassword = findViewById(R.id.signup_confirmpassword);
@@ -95,6 +94,7 @@ public class Signup extends AppCompatActivity {
                     .addOnCompleteListener(this, task -> {
                         if (task.isSuccessful()) {
                             Toast.makeText(Signup.this, "Registration successful. Please check your email for verification.", Toast.LENGTH_SHORT).show();
+                            setContentView(R.layout.activity_email_verify);
                             startActivity(new Intent(Signup.this, LoginActivity.class));
                             finish();
                         } else {
