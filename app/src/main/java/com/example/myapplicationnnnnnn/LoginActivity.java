@@ -6,8 +6,10 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.drawable.ColorDrawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
@@ -20,6 +22,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 
@@ -44,10 +47,10 @@ public class LoginActivity extends AppCompatActivity {
     private FirebaseAuth auth;
     private EditText loginUsername, loginPassword;
     private Button loginButton, google_btn;
-    private TextView createAccountText, forgotPasswordText;
+    private TextView createAccountText, forgotPassword;
     private CheckBox rememberMe;
-    
-    
+
+
     GoogleSignInOptions gso;
     GoogleSignInClient gsc;
     ImageView googleBtn;
@@ -62,17 +65,17 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.login);
 
         googleBtn = findViewById(R.id.google_btn);
-        
+
         gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestEmail().build();
-        gsc = GoogleSignIn.getClient(this, gso); 
-        
+        gsc = GoogleSignIn.getClient(this, gso);
+
         auth = FirebaseAuth.getInstance();
         loginUsername = findViewById(R.id.login_username);
         loginPassword = findViewById(R.id.login_password);
         loginButton = findViewById(R.id.login_button);
         createAccountText = findViewById(R.id.create_acc);
         rememberMe = findViewById(R.id.remember);
-        forgotPasswordText = findViewById(R.id.forgetpassword);
+        forgotPassword = findViewById(R.id.forgetpassword);
 
         // Check if user previously opted for "Remember Me"
 //        SharedPreferences sharedPref = getSharedPreferences("loginPrefs", Context.MODE_PRIVATE);
@@ -93,27 +96,75 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-//        forgotPasswordText.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                openPasswordReset();
-//            }
-//        });
-
         createAccountText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(LoginActivity.this, Signup.class));
             }
         });
-        
+
         googleBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 signIn();
             }
         });
-        
+
+
+        forgotPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
+                View dialogView = getLayoutInflater().inflate(R.layout.dialog_forgot,null);
+                EditText emailBox = dialogView.findViewById(R.id.emailBox);
+
+                builder.setView(dialogView);
+                AlertDialog dialog = builder.create();
+
+                dialogView.findViewById(R.id.btnReset).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        String userEmail = emailBox.getText().toString();
+
+
+                                                // && texy ||
+                        if (TextUtils.isEmpty(userEmail) && !Patterns.EMAIL_ADDRESS.matcher(userEmail).matches()) {
+                            Toast.makeText(LoginActivity.this, "Enter a valid email address", Toast.LENGTH_SHORT).show();
+                            return;
+                        }
+
+                        auth.sendPasswordResetEmail(userEmail).addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                if (task.isSuccessful()) {
+                                    Toast.makeText(LoginActivity.this, "Password reset email sent", Toast.LENGTH_SHORT).show();
+                                } else {
+                                    Toast.makeText(LoginActivity.this, "Failed to send password reset email", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        });
+
+                        // Dismiss the dialog after handling reset logic
+                        dialog.dismiss();
+                    }
+                });
+
+                dialogView.findViewById(R.id.btnCancel).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.dismiss();
+                    }
+                });
+                //dialog.show();
+
+                if (dialog.getWindow() != null){
+                    dialog.getWindow().setBackgroundDrawable(new ColorDrawable(0));
+                }
+                dialog.show();
+
+            }
+        });
+
     }
 
     void signIn(){
@@ -124,7 +175,7 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        
+
         if (requestCode == 1000){
             Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
 
@@ -136,18 +187,12 @@ public class LoginActivity extends AppCompatActivity {
             }
         }
     }
-    
+
     void navigateToSecondActivity(){
         finish();
         Intent intent = new Intent(LoginActivity.this,MainPageActivity.class);
         startActivity(intent);
     }
-
-    //    private void signIn() {
-//        gsc.signOut();
-//        Intent signInIntent = gsc.getSignInIntent();
-//        startActivityForResult(signInIntent, RC_SIGN_IN);
-//    }
 
     private void autoLogin(String email, String password) {
         auth.signInWithEmailAndPassword(email, password)
