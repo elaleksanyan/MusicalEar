@@ -130,7 +130,7 @@
             android:layout_width="match_parent"
             android:layout_height="70dp"
             android:backgroundTint="@color/white"
-            android:id="@+id/GoogleButton"
+            android:id="@+id/google_sign_in"
             android:text="Continue with google"
             android:textColor="@color/orange"
             android:textSize="18sp"

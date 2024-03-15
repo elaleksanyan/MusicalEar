@@ -1,5 +1,7 @@
 package com.example.myapplicationnnnnnn;
 
+
+
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -10,7 +12,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.google.firebase.FirebaseApp;
+import com.google.firebase.storage.StorageReference;
+
 public class PlayPageActivity extends AppCompatActivity {
+
 
     TextView totalQuestionsTextView;
     TextView questionTextView;
@@ -29,6 +35,10 @@ public class PlayPageActivity extends AppCompatActivity {
         getSupportActionBar().hide();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_play_page);
+
+        FirebaseApp.initializeApp(this);
+
+
 
         totalQuestionsTextView = findViewById(R.id.totalQuestions);
         questionTextView = findViewById(R.id.question);

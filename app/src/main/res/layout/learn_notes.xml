@@ -9,13 +9,29 @@
     android:gravity="center"
     tools:context=".NotesLearn">
 
+
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
     <ImageView
-        android:id="@+id/note_e"
+        android:id="@+id/note_c"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/note_c"
+        android:scaleType="fitXY"
+        />
+    <ImageView
+        android:id="@+id/note_cp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
         />
 
+
+
+
+    </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
