@@ -51,7 +51,7 @@ public class LoginActivity extends AppCompatActivity {
 
     GoogleSignInOptions gso;
     GoogleSignInClient gsc;
-    Button googleBtn;
+    ImageView googleBtn;
 
 
     @SuppressLint({"WrongViewCast", "MissingInflatedId"})
@@ -65,7 +65,7 @@ public class LoginActivity extends AppCompatActivity {
         googleBtn = findViewById(R.id.google_sign_in);
 
         gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestIdToken(getString(R.string.default_web_client_id))
+                .requestIdToken(getString(R.string.auth_web_client_id))
                 .requestEmail()
                 .build();
 
@@ -120,10 +120,21 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
+//    private void signIn() {
+//        gsc.signOut();
+//        Intent signInIntent = gsc.getSignInIntent();
+//        startActivityForResult(signInIntent, RC_SIGN_IN);
+//    }
     private void signIn() {
-        gsc.signOut();
-        Intent signInIntent = gsc.getSignInIntent();
-        startActivityForResult(signInIntent, RC_SIGN_IN);
+        GoogleSignInOptions signInOptions = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestEmail()
+                .build();
+
+        GoogleSignInClient signInClient = GoogleSignIn.getClient(LoginActivity.this, signInOptions);
+        signInClient.signOut().addOnCompleteListener(task -> {
+            Intent signInIntent = signInClient.getSignInIntent();
+            startActivityForResult(signInIntent, RC_SIGN_IN);
+        });
     }
 
     @Override

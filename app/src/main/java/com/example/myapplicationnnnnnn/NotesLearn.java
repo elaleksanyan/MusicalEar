@@ -25,12 +25,16 @@ import com.squareup.picasso.Picasso;
 
 
 public class NotesLearn extends AppCompatActivity {
-    ImageView imageView;
+    ImageView c;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.learn_notes);
-         imageView = findViewById(R.id.note_c);
+         c = findViewById(R.id.note_c);
+
+        Picasso.get()
+                .load("https://firebasestorage.googleapis.com/v0/b/musical-ear-6133d.appspot.com/o/Notes%2Fc.png?alt=media&token=84e1270c-c139-4de8-906f-80404b547919")
+                .into(c);
 
 //        FirebaseDatabase database = FirebaseDatabase.getInstance();
 //        DatabaseReference note = database.getReference("c");
@@ -47,23 +51,23 @@ public class NotesLearn extends AppCompatActivity {
 //
 //            }
 //        });
-
-        FirebaseStorage storage = FirebaseStorage.getInstance();
-        StorageReference storageReference = storage.getReference().child("Notes/c.png00000000000000000000000000000000000000");
-
-        storageReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-            @Override
-            public void onSuccess(Uri uri) {
-                Glide.with(getApplicationContext())
-                        .load(uri)
-                        .into(imageView);
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                Toast.makeText(getApplicationContext(), "Invalid load image", Toast.LENGTH_SHORT).show();
-            }
-        });
+//
+//        FirebaseStorage storage = FirebaseStorage.getInstance();
+//        StorageReference storageReference = storage.getReference().child("Notes/c.png");
+//
+//        storageReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+//            @Override
+//            public void onSuccess(Uri uri) {
+//                Glide.with(getApplicationContext())
+//                        .load(uri)
+//                        .into(imageView);
+//            }
+//        }).addOnFailureListener(new OnFailureListener() {
+//            @Override
+//            public void onFailure(@NonNull Exception e) {
+//                Toast.makeText(getApplicationContext(), "Invalid load image", Toast.LENGTH_SHORT).show();
+//            }
+//        });
 
     }
 }

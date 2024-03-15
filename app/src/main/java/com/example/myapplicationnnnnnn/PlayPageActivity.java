@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -29,6 +30,8 @@ public class PlayPageActivity extends AppCompatActivity {
     int currentQuestionIndex = 0;
     int score = 0;
     int totalQuestions = QuestionAnswers.question.length;
+
+    Handler handler = new Handler();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,17 +63,17 @@ public class PlayPageActivity extends AppCompatActivity {
 
         Button button = (Button) view;
 
-        if (button.getId() == R.id.ok) {
+
+            selectedAnswer = button.getText().toString();
             if (selectedAnswer.equals(QuestionAnswers.answers[currentQuestionIndex])) {
+                button.setBackgroundColor(Color.GREEN);
                 score++;
-            }
+            }else {
+                button.setBackgroundColor(Color.RED);
+            };
             ++currentQuestionIndex;
             loadNewQuestion();
 
-        } else {
-            selectedAnswer = button.getText().toString();
-            button.setBackgroundColor(Color.YELLOW);
-        }
     }
     private void loadNewQuestion() {
         if (currentQuestionIndex == totalQuestions) {
@@ -78,11 +81,16 @@ public class PlayPageActivity extends AppCompatActivity {
             FinishQuiz();
             return;
         }
-        questionTextView.setText(QuestionAnswers.question[currentQuestionIndex]);
-        ansAButton.setText(QuestionAnswers.choices[currentQuestionIndex][0]);
-        ansBButton.setText(QuestionAnswers.choices[currentQuestionIndex][1]);
-        ansCButton.setText(QuestionAnswers.choices[currentQuestionIndex][2]);
-        ansDButton.setText(QuestionAnswers.choices[currentQuestionIndex][3]);
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                questionTextView.setText(QuestionAnswers.question[currentQuestionIndex]);
+                ansAButton.setText(QuestionAnswers.choices[currentQuestionIndex][0]);
+                ansBButton.setText(QuestionAnswers.choices[currentQuestionIndex][1]);
+                ansCButton.setText(QuestionAnswers.choices[currentQuestionIndex][2]);
+                ansDButton.setText(QuestionAnswers.choices[currentQuestionIndex][3]);
+            }
+        }, 2000);
     }
     private void FinishQuiz() {
         String passStatus = "";
