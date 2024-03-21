@@ -3,6 +3,7 @@ package com.example.myapplicationnnnnnn;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -23,7 +24,7 @@ public class LearnPageActivity extends AppCompatActivity {
         notes_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                setContentView(R.layout.learn_notes);
+                startActivity(new Intent(LearnPageActivity.this,NotesLearn.class));
             }
         });
 

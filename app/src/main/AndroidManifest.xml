@@ -28,11 +28,15 @@
             android:name=".LeaderboardPageActivity"
             android:exported="false" />
         <activity
+            android:name=".NotesLearn"
+            android:exported="false" />
+        <activity
             android:name=".MainPageActivity"
             android:exported="false" />
         <activity
             android:name=".LoginActivity"
             android:exported="true">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
