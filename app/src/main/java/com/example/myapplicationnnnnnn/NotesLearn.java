@@ -2,6 +2,8 @@ package com.example.myapplicationnnnnnn;
 
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -17,23 +19,28 @@ import com.google.firebase.storage.StorageReference;
 
 
 public class NotesLearn extends AppCompatActivity {
-    ImageView c;
+    ImageView notes,notesOnPiano;
+    Button next_note;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
+        getSupportActionBar().hide();
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.learn_notes);
-        c = findViewById(R.id.note_c);
+        notes = findViewById(R.id.note_c);
+        notesOnPiano = findViewById(R.id.notesOnPiano);
 
         FirebaseStorage storage = FirebaseStorage.getInstance();
-        StorageReference storageReference = storage.getReference("Notes").child("c.png");
+        StorageReference notesSheets = storage.getReference("NotesOnPiano").child("c_piano.gif");
+        StorageReference notesPiano = storage.getReference("Notes").child("notes.gif");
 
-        storageReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+        notesSheets.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
             @Override
             public void onSuccess(Uri uri) {
                 Glide.with(getApplicationContext())
                         .load(uri)
-                        .into(c);
+                        .into(notes);
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
@@ -41,6 +48,21 @@ public class NotesLearn extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "Invalid load image", Toast.LENGTH_SHORT).show();
             }
         });
+
+        notesPiano.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+            @Override
+            public void onSuccess(Uri uri) {
+                Glide.with(getApplicationContext())
+                        .load(uri)
+                        .into(notesOnPiano);
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(getApplicationContext(), "Invalid load image", Toast.LENGTH_SHORT).show();
+            }
+        });
+
 
     }
 }
