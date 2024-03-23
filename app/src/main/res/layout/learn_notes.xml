@@ -23,7 +23,153 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingBottom="5dp">
 
+            <Button
+                android:id="@+id/listen_c"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@drawable/round_btn"
+                android:drawableRight="@drawable/listen"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="10dp"
+                android:text="До"/>
 
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingBottom="5dp">
 
+            <Button
+                android:id="@+id/listen_d"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@drawable/round_btn"
+                android:drawableRight="@drawable/listen"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="10dp"
+                android:text="Ре"/>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingBottom="5dp">
+
+            <Button
+                android:id="@+id/listen_е"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@drawable/round_btn"
+                android:drawableRight="@drawable/listen"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="10dp"
+                android:text="Ми"/>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingBottom="5dp">
+
+            <Button
+                android:id="@+id/listen_f"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@drawable/round_btn"
+                android:drawableRight="@drawable/listen"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="10dp"
+                android:text="Фа"/>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingBottom="5dp">
+
+            <Button
+                android:id="@+id/listen_g"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@drawable/round_btn"
+                android:drawableRight="@drawable/listen"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="10dp"
+                android:text="Соль"/>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingBottom="5dp">
+
+            <Button
+                android:id="@+id/listen_a"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@drawable/round_btn"
+                android:drawableRight="@drawable/listen"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="10dp"
+                android:text="Ля"/>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingBottom="5dp">
+
+            <Button
+                android:id="@+id/listen_h"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@drawable/round_btn"
+                android:drawableRight="@drawable/listen"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="10dp"
+                android:text="Си"/>
+
+        </LinearLayout>
+    </LinearLayout>
+    </ScrollView>
 </LinearLayout>
