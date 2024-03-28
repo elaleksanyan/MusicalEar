@@ -31,8 +31,7 @@ public class LearnPageActivity extends AppCompatActivity {
         intervals_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                startActivity(new Intent(LearnPageActivity.this,IntervalsLearn.class));
+                startActivity(new Intent(LearnPageActivity.this,InfoIntervals.class));
             }
         });
 
