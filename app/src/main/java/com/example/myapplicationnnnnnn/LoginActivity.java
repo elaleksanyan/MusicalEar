@@ -1,5 +1,6 @@
 package com.example.myapplicationnnnnnn;
 
+import static android.accounts.AccountManager.KEY_PASSWORD;
 import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
 
 import android.annotation.SuppressLint;
@@ -15,6 +16,7 @@ import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -46,7 +48,7 @@ import java.lang.ref.WeakReference;
 public class LoginActivity extends AppCompatActivity {
     private FirebaseAuth auth;
     private EditText loginUsername, loginPassword;
-    private Button loginButton, google_btn;
+    private Button loginButton;
     private TextView createAccountText, forgotPassword;
     private CheckBox rememberMe;
 
@@ -54,6 +56,13 @@ public class LoginActivity extends AppCompatActivity {
     GoogleSignInOptions gso;
     GoogleSignInClient gsc;
     ImageView googleBtn;
+
+
+    private SharedPreferences sharedPreferences;
+    private static final String PREF_NAME = "loginPref";
+    private static final String KEY_USERNAME = "username";
+    private static final String KEY_PASSWORD = "password";
+    private static final String KEY_REMEMBER_ME = "rememberMe";
 
 
 
@@ -165,6 +174,43 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
+
+        sharedPreferences = getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
+
+        // Restore saved login credentials if "Remember Me" is checked
+        boolean rememberMeChecked = sharedPreferences.getBoolean(KEY_REMEMBER_ME, false);
+        if (rememberMeChecked) {
+            String savedUsername = sharedPreferences.getString(KEY_USERNAME, "");
+            String savedPassword = sharedPreferences.getString(KEY_PASSWORD, "");
+            loginUsername.setText(savedUsername);
+            loginPassword.setText(savedPassword);
+            rememberMe.setChecked(true);
+        }
+
+        rememberMe.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    // Save login credentials if "Remember Me" is checked
+                    String username = loginUsername.getText().toString().trim();
+                    String password = loginPassword.getText().toString().trim();
+
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    editor.putString(KEY_USERNAME, username);
+                    editor.putString(KEY_PASSWORD, password);
+                    editor.putBoolean(KEY_REMEMBER_ME, true);
+                    editor.apply();
+                } else {
+                    // Clear saved login credentials if "Remember Me" is unchecked
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    editor.remove(KEY_USERNAME);
+                    editor.remove(KEY_PASSWORD);
+                    editor.putBoolean(KEY_REMEMBER_ME, false);
+                    editor.apply();
+                }
+            }
+        });
+
     }
 
     void signIn(){
@@ -254,24 +300,6 @@ public class LoginActivity extends AppCompatActivity {
     }
 
 
-//    private void saveCredentials(final String email, final String password) {
-//        final WeakReference<Context> contextReference = new WeakReference<>(this);
-//
-//        new AsyncTask<Void, Void, Void>() {
-//            @Override
-//            protected Void doInBackground(Void... voids) {
-//                Context context = contextReference.get();
-//                if (context != null) {
-//                    SharedPreferences sharedPref = context.getSharedPreferences("loginPrefs", Context.MODE_PRIVATE);
-//                    SharedPreferences.Editor editor = sharedPref.edit();
-//                    editor.putString("username", email)
-//                            .putString("password", password)
-//                            .putBoolean("rememberMe", true)
-//                            .apply();
-//                }
-//                return null;
-//            }
-//        }.execute();
-//    }
+
 
 }
