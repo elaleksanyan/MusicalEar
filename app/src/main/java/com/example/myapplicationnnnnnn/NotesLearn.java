@@ -20,7 +20,7 @@ import com.google.firebase.storage.StorageReference;
 
 
 public class NotesLearn extends AppCompatActivity {
-    ImageView notes,notesOnPiano;
+    ImageView notes;
     Button next_note;
 
     @Override
@@ -30,32 +30,17 @@ public class NotesLearn extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.learn_notes);
         notes = findViewById(R.id.note_c);
-        notesOnPiano = findViewById(R.id.notesOnPiano);
 
         FirebaseStorage storage = FirebaseStorage.getInstance();
-        StorageReference notesSheets = storage.getReference("NotesOnPiano").child("c_piano.gif");
-        StorageReference notesPiano = storage.getReference("Notes").child("notes.gif");
+        StorageReference allNotes = storage.getReference("Notes").child("all-notes.jpg");
 
-        notesSheets.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+
+        allNotes.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
             @Override
             public void onSuccess(Uri uri) {
                 Glide.with(getApplicationContext())
                         .load(uri)
                         .into(notes);
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                Toast.makeText(getApplicationContext(), "Invalid load image", Toast.LENGTH_SHORT).show();
-            }
-        });
-
-        notesPiano.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-            @Override
-            public void onSuccess(Uri uri) {
-                Glide.with(getApplicationContext())
-                        .load(uri)
-                        .into(notesOnPiano);
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override

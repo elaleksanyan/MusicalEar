@@ -9,24 +9,25 @@
     android:padding="50dp"
     tools:context=".NotesLearn">
 
-    <ImageView
-        android:id="@+id/note_c"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:scaleType="fitXY"
-        />
 
-    <ImageView
-        android:id="@+id/notesOnPiano"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        />
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
     <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/note_c"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:scaleType="fitXY"
+        />
+
+        <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
@@ -48,7 +49,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingLeft="10dp"
-                android:text="До"/>
+                android:text="C"/>
 
         </LinearLayout>
         <LinearLayout
@@ -69,7 +70,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingLeft="10dp"
-                android:text="Ре"/>
+                android:text="D"/>
 
         </LinearLayout>
         <LinearLayout
@@ -90,7 +91,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingLeft="10dp"
-                android:text="Ми"/>
+                android:text="E"/>
 
         </LinearLayout>
         <LinearLayout
@@ -111,7 +112,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingLeft="10dp"
-                android:text="Фа"/>
+                android:text="F"/>
 
         </LinearLayout>
         <LinearLayout
@@ -132,7 +133,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingLeft="10dp"
-                android:text="Соль"/>
+                android:text="G"/>
 
         </LinearLayout>
         <LinearLayout
@@ -153,7 +154,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingLeft="10dp"
-                android:text="Ля"/>
+                android:text="A"/>
 
         </LinearLayout>
         <LinearLayout
@@ -174,9 +175,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingLeft="10dp"
-                android:text="Си"/>
+                android:text="B"/>
 
         </LinearLayout>
+    </LinearLayout>
     </LinearLayout>
     </ScrollView>
 </LinearLayout>
