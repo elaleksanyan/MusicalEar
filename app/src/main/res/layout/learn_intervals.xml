@@ -5,8 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="15dp"
-    android:gravity="top"
-    android:layout_gravity="top"
+    android:gravity="center"
     tools:context=".IntervalsLearn">
 
     <LinearLayout
@@ -14,9 +13,9 @@
         android:layout_height="60dp"
         android:gravity="center_horizontal">
          <TextView
+             android:id="@+id/textView"
              android:layout_width="wrap_content"
              android:layout_height="wrap_content"
-             android:text="Unison"
              android:textSize="30sp"
              android:textColor="@color/orange"
              android:textStyle="italic"
