@@ -1,60 +1,54 @@
 package com.example.myapplicationnnnnnn;
 
-import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
-
 import android.net.Uri;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import com.bumptech.glide.Glide;
+import com.example.myapplicationnnnnnn.R;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
-
-import java.util.ArrayList; // Add this line to import ArrayList
-import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 public class IntervalsLearn extends AppCompatActivity {
+
     ImageView onPiano;
     TextView textView;
     Button next_int;
     StorageReference storageReference;
     FirebaseFirestore db;
+    List<String> names;
     List<String> images;
     int currentIndex = 0;
-    DatabaseReference imageNamesRef;
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        getSupportActionBar().hide();
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.learn_intervals);
 
+        getSupportActionBar().hide();
+
         onPiano = findViewById(R.id.piano);
-        next_int = findViewById(R.id.next_interval);
         textView = findViewById(R.id.textView);
+        next_int = findViewById(R.id.next_interval);
 
         FirebaseStorage storage = FirebaseStorage.getInstance();
         storageReference = storage.getReference("Intervals/OnPiano");
+        db = FirebaseFirestore.getInstance();
 
         images = new ArrayList<>();
+        names = new ArrayList<>();
+
         images.add("prima.png");
         images.add("poqr_sekunda.png");
         images.add("mec_sekunda.png");
@@ -69,19 +63,42 @@ public class IntervalsLearn extends AppCompatActivity {
         images.add("oktava.png");
 
         loadNextImage();
+        fetchNextStringFromFirestore();
 
         next_int.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 currentIndex++;
                 if (currentIndex >= images.size()) {
-                    currentIndex = 0; // Loop back to the first image
+                    currentIndex = 0;
                 }
                 loadNextImage();
-
+                fetchNextStringFromFirestore();
             }
         });
+    }
 
+    private void fetchNextStringFromFirestore() {
+        db.collection("yourCollection").document("yourDocument")
+                .get()
+                .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                    @Override
+                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+                        String fieldName = "string" + (currentIndex + 1);
+                        if (documentSnapshot.contains(fieldName)) {
+                            String fetchedString = documentSnapshot.getString(fieldName);
+                            textView.setText(fetchedString);
+                        } else {
+                            Toast.makeText(getApplicationContext(), "String not found in Firestore", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(getApplicationContext(), "Failed to fetch string from Firestore: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
     }
 
     private void loadNextImage() {
@@ -101,5 +118,4 @@ public class IntervalsLearn extends AppCompatActivity {
             }
         });
     }
-
 }
