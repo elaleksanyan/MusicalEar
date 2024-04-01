@@ -24,13 +24,14 @@ import java.util.List;
 
 public class IntervalsLearn extends AppCompatActivity {
 
-    ImageView onPiano;
+    ImageView onPiano,onNotes;
     TextView textView;
     Button next_int;
-    StorageReference storageReference;
+    StorageReference storageReference1,storageReference2;
     FirebaseFirestore db;
     List<String> names;
     List<String> images;
+    List<String> sheets;
     int currentIndex = 0;
 
     @Override
@@ -41,16 +42,17 @@ public class IntervalsLearn extends AppCompatActivity {
         getSupportActionBar().hide();
 
         onPiano = findViewById(R.id.piano);
+        onNotes = findViewById(R.id.sheets);
         textView = findViewById(R.id.textView);
         next_int = findViewById(R.id.next_interval);
 
         // Initialize Firebase instances
         FirebaseStorage storage = FirebaseStorage.getInstance();
-        storageReference = storage.getReference("Intervals/OnPiano");
+        storageReference1 = storage.getReference("Intervals/OnPiano");
         db = FirebaseFirestore.getInstance();
 
-        // Initialize lists
         images = new ArrayList<>();
+
         names = new ArrayList<>();
 
         // Populate image list
@@ -67,11 +69,28 @@ public class IntervalsLearn extends AppCompatActivity {
         images.add("mec_septima.png");
         images.add("oktava.png");
 
+
+        storageReference2 = storage.getReference("Intervals/IntervalsExamples");
+        sheets = new ArrayList<>();
+
+
+        sheets.add("prima.png");
+        sheets.add("poqr_sekunda.png");
+        sheets.add("mec_sekunda.png");
+        sheets.add("poqr_tercia.png");
+        sheets.add("mec_tercia.png");
+        sheets.add("maqur_kvarta.png");
+        sheets.add("maqur_kvinta.png");
+        sheets.add("poqr_seksta.png");
+        sheets.add("mec_seksta.png");
+        sheets.add("poqr_septima.png");
+        sheets.add("mec_septima.png");
+        sheets.add("oktava.png");
+
         // Set initial image and string
         loadNextImage();
         fetchNextStringFromFirestore();
 
-        // Set click listener for Next button
         next_int.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -113,7 +132,10 @@ public class IntervalsLearn extends AppCompatActivity {
 
     private void loadNextImage() {
         String imageName = images.get(currentIndex);
-        StorageReference imageRef = storageReference.child(imageName);
+        String sheetsView = sheets.get(currentIndex);
+        StorageReference imageRef = storageReference1.child(imageName);
+        StorageReference sheetsRef = storageReference2.child(sheetsView);
+
         imageRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
             @Override
             public void onSuccess(Uri uri) {
@@ -127,5 +149,20 @@ public class IntervalsLearn extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "Failed to load image: " + e.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
+
+        sheetsRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+            @Override
+            public void onSuccess(Uri uri) {
+                Glide.with(getApplicationContext())
+                        .load(uri)
+                        .into(onNotes);
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(getApplicationContext(), "Failed to load image: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
     }
 }
