@@ -9,113 +9,130 @@
     android:padding="50dp"
     tools:context=".NotesLearn">
 
-
-    <ScrollView
+    <ImageView
+        android:id="@+id/note_c"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="200dp"
+        android:layout_gravity="center"
+        android:src="@drawable/all_notes"
+        />
+
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="horizontal"
+        android:paddingTop="30dp"
+        android:paddingLeft="53dp"
+        android:gravity="center_horizontal">
 
-        <ImageView
-            android:id="@+id/note_c"
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingBottom="5dp">
+
+                <Button
+                    android:onClick="c_listen"
+                    android:id="@+id/listen_c"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:background="@drawable/round_btn"
+                    android:drawableRight="@drawable/listen"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="10dp"
+                    android:text="C"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingBottom="5dp">
+
+                <Button
+                    android:onClick="d_listen"
+                    android:id="@+id/listen_d"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:background="@drawable/round_btn"
+                    android:drawableRight="@drawable/listen"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="10dp"
+                    android:text="D"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingBottom="5dp">
+
+                <Button
+                    android:onClick="e_listen"
+                    android:id="@+id/listen_е"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:background="@drawable/round_btn"
+                    android:drawableRight="@drawable/listen"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="10dp"
+                    android:text="E"/>
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:scaleType="fitXY"
-        />
+            android:orientation="vertical"
+            android:gravity="center_horizontal"
+            >
 
-        <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:paddingBottom="5dp">
-
-            <Button
-                android:onClick="c_listen"
-                android:id="@+id/listen_c"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:background="@drawable/round_btn"
-                android:drawableRight="@drawable/listen"
-                />
-            <TextView
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingLeft="10dp"
-                android:text="C"/>
+                android:orientation="horizontal"
+                android:paddingBottom="5dp">
 
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:paddingBottom="5dp">
+                <Button
+                    android:onClick="f_listen"
+                    android:id="@+id/listen_f"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:background="@drawable/round_btn"
+                    android:drawableRight="@drawable/listen"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="10dp"
+                    android:text="F"/>
 
-            <Button
-                android:onClick="d_listen"
-                android:id="@+id/listen_d"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:background="@drawable/round_btn"
-                android:drawableRight="@drawable/listen"
-                />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingLeft="10dp"
-                android:text="D"/>
+            </LinearLayout>
 
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:paddingBottom="5dp">
-
-            <Button
-                android:onClick="e_listen"
-                android:id="@+id/listen_е"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:background="@drawable/round_btn"
-                android:drawableRight="@drawable/listen"
-                />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingLeft="10dp"
-                android:text="E"/>
-
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:paddingBottom="5dp">
-
-            <Button
-                android:onClick="f_listen"
-                android:id="@+id/listen_f"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:background="@drawable/round_btn"
-                android:drawableRight="@drawable/listen"
-                />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingLeft="10dp"
-                android:text="F"/>
-
-        </LinearLayout>
-        <LinearLayout
+            <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
@@ -157,6 +174,14 @@
                 android:text="A"/>
 
         </LinearLayout>
+
+
+    </LinearLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center">
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -170,6 +195,7 @@
                 android:layout_height="40dp"
                 android:background="@drawable/round_btn"
                 android:drawableRight="@drawable/listen"
+
                 />
             <TextView
                 android:layout_width="wrap_content"
@@ -178,7 +204,7 @@
                 android:text="B"/>
 
         </LinearLayout>
+
     </LinearLayout>
-    </LinearLayout>
-    </ScrollView>
+
 </LinearLayout>
