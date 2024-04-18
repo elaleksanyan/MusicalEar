@@ -10,4 +10,6 @@
     <color name="orange">#FFA85D</color>
     <color name="light_orange">#FFC593</color>
     <color name="background">#F3F1CAA9</color>
+    <color name="quiz_result_background">#F44336</color>
+    <color name="quiz_result_text">#78F436</color>
 </resources>

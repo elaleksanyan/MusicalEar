@@ -1,30 +1,20 @@
 package com.example.myapplicationnnnnnn;
 
-import android.widget.Toast;
+import com.google.firebase.firestore.PropertyName;
 
 import java.util.List;
 
-public class QuestionAnswers {
-
-    private String folderName;
-    private String audioUrl;
+public class Question {
+    @PropertyName("answers")
     private List<String> answers;
+
+    @PropertyName("audioUrl")
+    private String audioUrl;
+
+    @PropertyName("correctAnswerIndex")
     private int correctAnswerIndex;
 
-    public String getFolderName() {
-        return folderName;
-    }
-
-    public void setFolderName(String folderName) {
-        this.folderName = folderName;
-    }
-
-    public String getAudioUrl() {
-        return audioUrl;
-    }
-
-    public void setAudioUrl(String audioUrl) {
-        this.audioUrl = audioUrl;
+    public Question() {
     }
 
     public List<String> getAnswers() {
@@ -35,6 +25,14 @@ public class QuestionAnswers {
         this.answers = answers;
     }
 
+    public String getAudioUrl() {
+        return audioUrl;
+    }
+
+    public void setAudioUrl(String audioUrl) {
+        this.audioUrl = audioUrl;
+    }
+
     public int getCorrectAnswerIndex() {
         return correctAnswerIndex;
     }
@@ -42,5 +40,4 @@ public class QuestionAnswers {
     public void setCorrectAnswerIndex(int correctAnswerIndex) {
         this.correctAnswerIndex = correctAnswerIndex;
     }
-
 }
