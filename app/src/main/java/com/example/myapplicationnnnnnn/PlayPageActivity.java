@@ -1,5 +1,6 @@
 package com.example.myapplicationnnnnnn;
 
+import android.graphics.Color;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
@@ -133,16 +134,142 @@ public class PlayPageActivity extends AppCompatActivity {
     }
 
     private void loadQuestionOptions() {
-        Question currentQuestion = questions.get(currentQuestionIndex);
+        // Delay for 500 milliseconds (half a second)
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                Question currentQuestion = questions.get(currentQuestionIndex);
 
-        option1Button.setText(currentQuestion.getAnswers().get(0));
-        option2Button.setText(currentQuestion.getAnswers().get(1));
-        option3Button.setText(currentQuestion.getAnswers().get(2));
-        option4Button.setText(currentQuestion.getAnswers().get(3));
+                option1Button.setText(currentQuestion.getAnswers().get(0));
+                option2Button.setText(currentQuestion.getAnswers().get(1));
+                option3Button.setText(currentQuestion.getAnswers().get(2));
+                option4Button.setText(currentQuestion.getAnswers().get(3));
+            }
+        }, 1000); // Change the delay time here if needed
     }
+
+
+//    private void loadQuestionOptions() {
+//        Question currentQuestion = questions.get(currentQuestionIndex);
+//
+//        option1Button.setText(currentQuestion.getAnswers().get(0));
+//        option2Button.setText(currentQuestion.getAnswers().get(1));
+//        option3Button.setText(currentQuestion.getAnswers().get(2));
+//        option4Button.setText(currentQuestion.getAnswers().get(3));
+//    }
+
+//    private void checkAnswer() {
+//        int correctAnswerIndex = questions.get(currentQuestionIndex).getCorrectAnswerIndex();
+//
+//        if (selectedAnswerIndex == correctAnswerIndex) {
+//            correctAnswers++;
+//        } else {
+//            incorrectAnswers++;
+//        }
+//
+//        selectedAnswerIndex = -1;
+//    }
 
     private void checkAnswer() {
         int correctAnswerIndex = questions.get(currentQuestionIndex).getCorrectAnswerIndex();
+
+        switch (selectedAnswerIndex) {
+            case 0:
+                if (selectedAnswerIndex == correctAnswerIndex) {
+                    option1Button.setBackgroundColor(Color.GREEN);
+                } else {
+                    option1Button.setBackgroundColor(Color.RED);
+                    switch (correctAnswerIndex){
+                        case 0:
+                            option1Button.setBackgroundColor(Color.GREEN);
+                            break;
+                        case 1:
+                            option2Button.setBackgroundColor(Color.GREEN);
+                            break;
+                        case 2:
+                            option3Button.setBackgroundColor(Color.GREEN);
+                            break;
+                        case 3:
+                            option4Button.setBackgroundColor(Color.GREEN);
+                            break;
+                    }
+                }
+                break;
+            case 1:
+                if (selectedAnswerIndex == correctAnswerIndex) {
+                    option2Button.setBackgroundColor(Color.GREEN);
+                } else {
+                    option2Button.setBackgroundColor(Color.RED);
+                    switch (correctAnswerIndex){
+                        case 0:
+                            option1Button.setBackgroundColor(Color.GREEN);
+                            break;
+                        case 1:
+                            option2Button.setBackgroundColor(Color.GREEN);
+                            break;
+                        case 2:
+                            option3Button.setBackgroundColor(Color.GREEN);
+                            break;
+                        case 3:
+                            option4Button.setBackgroundColor(Color.GREEN);
+                            break;
+                    }
+                }
+                break;
+            case 2:
+                if (selectedAnswerIndex == correctAnswerIndex) {
+                    option3Button.setBackgroundColor(Color.GREEN);
+                } else {
+                    option3Button.setBackgroundColor(Color.RED);
+                    switch (correctAnswerIndex){
+                        case 0:
+                            option1Button.setBackgroundColor(Color.GREEN);
+                            break;
+                        case 1:
+                            option2Button.setBackgroundColor(Color.GREEN);
+                            break;
+                        case 2:
+                            option3Button.setBackgroundColor(Color.GREEN);
+                            break;
+                        case 3:
+                            option4Button.setBackgroundColor(Color.GREEN);
+                            break;
+                    }
+                }
+                break;
+            case 3:
+                if (selectedAnswerIndex == correctAnswerIndex) {
+                    option4Button.setBackgroundColor(Color.GREEN);
+                } else {
+                    option4Button.setBackgroundColor(Color.RED);
+                    switch (correctAnswerIndex){
+                        case 0:
+                            option1Button.setBackgroundColor(Color.GREEN);
+                            break;
+                        case 1:
+                            option2Button.setBackgroundColor(Color.GREEN);
+                            break;
+                        case 2:
+                            option3Button.setBackgroundColor(Color.GREEN);
+                            break;
+                        case 3:
+                            option4Button.setBackgroundColor(Color.GREEN);
+                            break;
+                    }
+                }
+                break;
+        }
+
+        // Reset all button colors after a delay
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                option1Button.setBackgroundColor(Color.WHITE);
+                option2Button.setBackgroundColor(Color.WHITE);
+                option3Button.setBackgroundColor(Color.WHITE);
+                option4Button.setBackgroundColor(Color.WHITE);
+            }
+        }, 1000);
 
         if (selectedAnswerIndex == correctAnswerIndex) {
             correctAnswers++;
@@ -152,6 +279,7 @@ public class PlayPageActivity extends AppCompatActivity {
 
         selectedAnswerIndex = -1;
     }
+
 
     private void loadNextQuestion() {
         if (currentQuestionIndex < questions.size()) {
