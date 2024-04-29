@@ -14,9 +14,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.firestore.auth.User;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -36,9 +39,13 @@ public class PlayPageActivity extends AppCompatActivity {
     private int correctAnswers = 0;
     private int incorrectAnswers = 0;
     private int selectedAnswerIndex = -1;
+    private FirebaseFirestore firestore;
+    int initialScore;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        getSupportActionBar().hide();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_play_page);
 
@@ -60,6 +67,7 @@ public class PlayPageActivity extends AppCompatActivity {
             }
         });
 
+
         okButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -76,6 +84,19 @@ public class PlayPageActivity extends AppCompatActivity {
         option2Button.setOnClickListener(v -> setAnswerSelected(1));
         option3Button.setOnClickListener(v -> setAnswerSelected(2));
         option4Button.setOnClickListener(v -> setAnswerSelected(3));
+
+        FirebaseAuth auth = FirebaseAuth.getInstance();
+        FirebaseUser currentUser = auth.getCurrentUser();
+        FirebaseFirestore firestore = FirebaseFirestore.getInstance();
+
+        if (currentUser != null) {
+            String userId = currentUser.getUid();
+            String username = currentUser.getDisplayName();
+            String email = currentUser.getEmail();
+            initialScore = correctAnswers * 10 - incorrectAnswers * 5;
+
+        }
+
     }
 
     private void setAnswerSelected(int selectedAnswerIndex) {
@@ -304,6 +325,8 @@ public class PlayPageActivity extends AppCompatActivity {
         // Kpoxes ete petq a
         new Handler().postDelayed(this::finish, 4000);
     }
+
+
 
 
 }

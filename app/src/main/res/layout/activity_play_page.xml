@@ -26,9 +26,9 @@
     <Button
         android:id="@+id/hearing"
         android:layout_width="wrap_content"
-        android:layout_height="60dp"
+        android:layout_height="45dp"
         android:background="@drawable/round_btn"
-        android:text="listen"
+        android:drawableBottom="@drawable/note"
         android:gravity="center"
         />
 
