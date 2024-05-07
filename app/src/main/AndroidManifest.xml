@@ -7,7 +7,7 @@
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/icon"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplicationnnnnnn"
@@ -25,8 +25,8 @@
             android:name=".LearnPageActivity"
             android:exported="false" />
         <activity
-            android:name=".LeaderboardPageActivity"
-            android:exported="false" />
+            android:name="LeaderboardPageActivity"
+            android:exported="false"/>
         <activity
             android:name=".IntervalsLearn"
             android:exported="false" />

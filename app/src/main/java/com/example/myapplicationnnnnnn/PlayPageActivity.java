@@ -36,7 +36,7 @@ public class PlayPageActivity extends AppCompatActivity {
     private MediaPlayer mediaPlayer;
     private List<Question> questions;
     private int currentQuestionIndex = 0;
-    private int correctAnswers = 0;
+    private int correctScores = 0;
     private int incorrectAnswers = 0;
     private int selectedAnswerIndex = -1;
     private FirebaseFirestore firestore;
@@ -93,7 +93,7 @@ public class PlayPageActivity extends AppCompatActivity {
             String userId = currentUser.getUid();
             String username = currentUser.getDisplayName();
             String email = currentUser.getEmail();
-            initialScore = correctAnswers * 10 - incorrectAnswers * 5;
+            initialScore = correctScores * 10 - incorrectAnswers * 5;
 
         }
 
@@ -293,7 +293,7 @@ public class PlayPageActivity extends AppCompatActivity {
         }, 1000);
 
         if (selectedAnswerIndex == correctAnswerIndex) {
-            correctAnswers++;
+            correctScores++;
         } else {
             incorrectAnswers++;
         }
@@ -316,7 +316,7 @@ public class PlayPageActivity extends AppCompatActivity {
 
     private void showQuizResult() {
         StringBuilder resultMessage = new StringBuilder();
-        resultMessage.append("Correct: ").append(correctAnswers).append("\n");
+        resultMessage.append("Correct: ").append(correctScores).append("\n");
         resultMessage.append("Incorrect: ").append(incorrectAnswers);
 
         Toast.makeText(getApplicationContext(), resultMessage.toString(), Toast.LENGTH_LONG).show();
