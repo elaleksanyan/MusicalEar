@@ -1,21 +1,17 @@
-// LeaderboardItem.java
 package com.example.myapplicationnnnnnn;
 
 public class LeaderboardItem {
-    private String playerName;
+    private String playerEmail;
     private int score;
 
-    public LeaderboardItem(String playerName, int score) {
-        this.playerName = playerName;
-        this.score = score;
+    public LeaderboardItem() {}
+
+    public String getPlayerEmail() {
+        return playerEmail;
     }
 
-    public String getPlayerName() {
-        return playerName;
-    }
-
-    public void setPlayerName(String playerName) {
-        this.playerName = playerName;
+    public void setPlayerEmail(String playerEmail) {
+        this.playerEmail = playerEmail;
     }
 
     public int getScore() {

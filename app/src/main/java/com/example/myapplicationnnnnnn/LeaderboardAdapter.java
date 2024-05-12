@@ -7,15 +7,15 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-import java.util.ArrayList;
+import java.util.List;
 
 public class LeaderboardAdapter extends RecyclerView.Adapter<LeaderboardAdapter.ViewHolder> {
-    private ArrayList<String> userEmails;
-    private ArrayList<Integer> correctScores;
+    List<LeaderboardItem> leaderboardItems;
 
-    public LeaderboardAdapter(ArrayList<String> userEmails, ArrayList<Integer> correctScores) {
-        this.userEmails = userEmails;
-        this.correctScores = correctScores;
+    public LeaderboardAdapter(List<LeaderboardItem> leaderboardItems) {
+        this.leaderboardItems = leaderboardItems;
+
+        leaderboardItems.sort((item1, item2) ->  Integer.compare(item2.getScore(), item1.getScore()));
     }
 
     @NonNull
@@ -27,13 +27,15 @@ public class LeaderboardAdapter extends RecyclerView.Adapter<LeaderboardAdapter.
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.userEmailTextView.setText(userEmails.get(position));
-        holder.correctScoreTextView.setText(String.valueOf(correctScores.get(position)));
+        LeaderboardItem currentItem = leaderboardItems.get(position);
+
+        holder.userEmailTextView.setText(currentItem.getPlayerEmail());
+        holder.correctScoreTextView.setText(String.valueOf(currentItem.getScore()));
     }
 
     @Override
     public int getItemCount() {
-        return userEmails.size();
+        return leaderboardItems.size();
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
