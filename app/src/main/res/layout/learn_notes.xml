@@ -12,7 +12,7 @@
     <ImageView
         android:id="@+id/note_c"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="500dp"
         android:layout_gravity="center"
         android:src="@drawable/all_notes"
         />
@@ -53,7 +53,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingLeft="10dp"
-                    android:text="C"/>
+                    android:text="C"
+                    android:textSize="25sp"
+                    />
 
             </LinearLayout>
             <LinearLayout
@@ -74,7 +76,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingLeft="10dp"
-                    android:text="D"/>
+                    android:text="D"
+                    android:textSize="25sp"
+                    />
 
             </LinearLayout>
             <LinearLayout
@@ -95,7 +99,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingLeft="10dp"
-                    android:text="E"/>
+                    android:text="E"
+                    android:textSize="25sp"
+                    />
 
             </LinearLayout>
 
@@ -128,82 +134,91 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingLeft="10dp"
-                    android:text="F"/>
+                    android:text="F"
+                    android:textSize="25sp"
+                    />
 
             </LinearLayout>
 
             <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:paddingBottom="5dp">
-
-            <Button
-                android:onClick="g_listen"
-                android:id="@+id/listen_g"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:background="@drawable/round_btn"
-                android:drawableRight="@drawable/listen"
-                />
-            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingLeft="10dp"
-                android:text="G"/>
+                android:orientation="horizontal"
+                android:paddingBottom="5dp">
 
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:paddingBottom="5dp">
+                <Button
+                    android:onClick="g_listen"
+                    android:id="@+id/listen_g"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:background="@drawable/round_btn"
+                    android:drawableRight="@drawable/listen"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="10dp"
+                    android:text="G"
+                    android:textSize="25sp"
+                    />
 
-            <Button
-                android:onClick="a_listen"
-                android:id="@+id/listen_a"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:background="@drawable/round_btn"
-                android:drawableRight="@drawable/listen"
-                />
-            <TextView
+            </LinearLayout>
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingLeft="10dp"
-                android:text="A"/>
+                android:orientation="horizontal"
+                android:paddingBottom="5dp">
+
+                <Button
+                    android:onClick="a_listen"
+                    android:id="@+id/listen_a"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:background="@drawable/round_btn"
+                    android:drawableRight="@drawable/listen"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="10dp"
+                    android:text="A"
+                    android:textSize="25sp"
+                    />
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingBottom="5dp">
+
+                <Button
+                    android:onClick="h_listen"
+                    android:id="@+id/listen_h"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:background="@drawable/round_btn"
+                    android:drawableRight="@drawable/listen"
+
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="10dp"
+                    android:text="B"
+                    android:textSize="25sp"
+                    />
+
+            </LinearLayout>
+
+
 
         </LinearLayout>
-
-
-    </LinearLayout>
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center">
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:paddingBottom="5dp">
-
-            <Button
-                android:onClick="h_listen"
-                android:id="@+id/listen_h"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:background="@drawable/round_btn"
-                android:drawableRight="@drawable/listen"
-
-                />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingLeft="10dp"
-                android:text="B"/>
-
-        </LinearLayout>
 
     </LinearLayout>
 

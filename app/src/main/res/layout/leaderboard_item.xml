@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
+    android:background="@drawable/costom_edittext"
     android:padding="16dp">
 
     <TextView
@@ -10,7 +11,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:textSize="16sp"
+        android:textSize="30sp"
         android:textColor="@android:color/black"
         android:gravity="start"
         android:text="Player Name" />
@@ -19,8 +20,8 @@
         android:id="@+id/scoreTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="16sp"
-        android:textColor="@android:color/black"
+        android:textSize="45sp"
+        android:textColor="@color/orange"
         android:gravity="end"
         android:text="Score" />
 
