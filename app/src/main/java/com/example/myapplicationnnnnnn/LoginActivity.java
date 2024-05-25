@@ -48,7 +48,7 @@ import java.lang.ref.WeakReference;
 public class LoginActivity extends AppCompatActivity {
     private FirebaseAuth auth;
     private EditText loginUsername, loginPassword;
-    private Button loginButton;
+    private Button loginButton, guest;
     private TextView createAccountText, forgotPassword;
     private CheckBox rememberMe;
 
@@ -85,19 +85,9 @@ public class LoginActivity extends AppCompatActivity {
         createAccountText = findViewById(R.id.create_acc);
         rememberMe = findViewById(R.id.remember);
         forgotPassword = findViewById(R.id.forgetpassword);
+        guest = findViewById(R.id.guest_btn);
 
-        // Check if user previously opted for "Remember Me"
-//        SharedPreferences sharedPref = getSharedPreferences("loginPrefs", Context.MODE_PRIVATE);
-//        boolean rememberMeChecked = sharedPref.getBoolean("rememberMe", false);
-//
-//        if (rememberMeChecked) {
-//            String savedEmail = sharedPref.getString("username", "");
-//            String savedPassword = sharedPref.getString("password", "");
-//
-//            if (!savedEmail.isEmpty() && !savedPassword.isEmpty()) {
-//                autoLogin(savedEmail, savedPassword);
-//            }
-//        }
+
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -119,6 +109,12 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
+        guest.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                performTestLogin();
+            }
+        });
 
         forgotPassword.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -300,6 +296,25 @@ public class LoginActivity extends AppCompatActivity {
     }
 
 
+    private void performTestLogin() {
+        String testEmail = "sictst1@gmail.com";
+        String testPassword = "Samsung2023";
+
+        auth.signInWithEmailAndPassword(testEmail, testPassword)
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            Toast.makeText(LoginActivity.this, "Logged in as Test User", Toast.LENGTH_SHORT).show();
+                            startActivity(new Intent(LoginActivity.this, MainPageActivity.class));
+                            finish();
+                        } else {
+                            Toast.makeText(LoginActivity.this, "Authentication Failed.", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+
+    }
 
 
 }
