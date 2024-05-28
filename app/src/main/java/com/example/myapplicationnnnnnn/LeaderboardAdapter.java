@@ -1,4 +1,3 @@
-// LeaderboardAdapter.java
 package com.example.myapplicationnnnnnn;
 
 import android.view.LayoutInflater;

@@ -92,11 +92,8 @@ public class NotesLearn extends AppCompatActivity {
                 @Override
                 public void onSuccess(Uri uri) {
                     try {
-                        // Set the data source to the local file
                         mediaPlayer.setDataSource(getApplicationContext(), uri);
-                        // Prepare the MediaPlayer
                         mediaPlayer.prepare();
-                        // Start playing the audio
                         mediaPlayer.start();
                     } catch (Exception e) {
                         e.printStackTrace();
@@ -105,7 +102,6 @@ public class NotesLearn extends AppCompatActivity {
             }).addOnFailureListener(new OnFailureListener() {
                 @Override
                 public void onFailure(@NonNull Exception e) {
-                    // Handle any errors
                     e.printStackTrace();
                 }
             });
@@ -123,11 +119,8 @@ public class NotesLearn extends AppCompatActivity {
                 @Override
                 public void onSuccess(Uri uri) {
                     try {
-                        // Set the data source to the local file
                         mediaPlayer.setDataSource(getApplicationContext(), uri);
-                        // Prepare the MediaPlayer
                         mediaPlayer.prepare();
-                        // Start playing the audio
                         mediaPlayer.start();
                     } catch (Exception e) {
                         e.printStackTrace();
@@ -136,7 +129,6 @@ public class NotesLearn extends AppCompatActivity {
             }).addOnFailureListener(new OnFailureListener() {
                 @Override
                 public void onFailure(@NonNull Exception e) {
-                    // Handle any errors
                     e.printStackTrace();
                 }
             });
@@ -154,11 +146,8 @@ public class NotesLearn extends AppCompatActivity {
                 @Override
                 public void onSuccess(Uri uri) {
                     try {
-                        // Set the data source to the local file
                         mediaPlayer.setDataSource(getApplicationContext(), uri);
-                        // Prepare the MediaPlayer
                         mediaPlayer.prepare();
-                        // Start playing the audio
                         mediaPlayer.start();
                     } catch (Exception e) {
                         e.printStackTrace();
@@ -185,11 +174,8 @@ public class NotesLearn extends AppCompatActivity {
                 @Override
                 public void onSuccess(Uri uri) {
                     try {
-                        // Set the data source to the local file
                         mediaPlayer.setDataSource(getApplicationContext(), uri);
-                        // Prepare the MediaPlayer
                         mediaPlayer.prepare();
-                        // Start playing the audio
                         mediaPlayer.start();
                     } catch (Exception e) {
                         e.printStackTrace();
@@ -198,7 +184,6 @@ public class NotesLearn extends AppCompatActivity {
             }).addOnFailureListener(new OnFailureListener() {
                 @Override
                 public void onFailure(@NonNull Exception e) {
-                    // Handle any errors
                     e.printStackTrace();
                 }
             });
@@ -216,11 +201,8 @@ public class NotesLearn extends AppCompatActivity {
                 @Override
                 public void onSuccess(Uri uri) {
                     try {
-                        // Set the data source to the local file
                         mediaPlayer.setDataSource(getApplicationContext(), uri);
-                        // Prepare the MediaPlayer
                         mediaPlayer.prepare();
-                        // Start playing the audio
                         mediaPlayer.start();
                     } catch (Exception e) {
                         e.printStackTrace();
@@ -229,7 +211,6 @@ public class NotesLearn extends AppCompatActivity {
             }).addOnFailureListener(new OnFailureListener() {
                 @Override
                 public void onFailure(@NonNull Exception e) {
-                    // Handle any errors
                     e.printStackTrace();
                 }
             });
@@ -247,11 +228,8 @@ public class NotesLearn extends AppCompatActivity {
                 @Override
                 public void onSuccess(Uri uri) {
                     try {
-                        // Set the data source to the local file
                         mediaPlayer.setDataSource(getApplicationContext(), uri);
-                        // Prepare the MediaPlayer
                         mediaPlayer.prepare();
-                        // Start playing the audio
                         mediaPlayer.start();
                     } catch (Exception e) {
                         e.printStackTrace();
@@ -260,7 +238,6 @@ public class NotesLearn extends AppCompatActivity {
             }).addOnFailureListener(new OnFailureListener() {
                 @Override
                 public void onFailure(@NonNull Exception e) {
-                    // Handle any errors
                     e.printStackTrace();
                 }
             });

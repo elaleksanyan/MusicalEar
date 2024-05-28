@@ -51,7 +51,6 @@ public class IntervalsLearn extends AppCompatActivity {
         textView = findViewById(R.id.textView);
         next_int = findViewById(R.id.next_interval);
 
-        // Initialize Firebase instances
         FirebaseStorage storage = FirebaseStorage.getInstance();
         storageReference1 = storage.getReference("Intervals/OnPiano");
         db = FirebaseFirestore.getInstance();
@@ -60,7 +59,6 @@ public class IntervalsLearn extends AppCompatActivity {
 
         names = new ArrayList<>();
 
-        // Populate image list
         images.add("prima.png");
         images.add("poqr_sekunda.png");
         images.add("mec_sekunda.png");
@@ -110,7 +108,6 @@ public class IntervalsLearn extends AppCompatActivity {
         audioNames.add("mec_septima.mp3");
         audioNames.add("oktava.mp3");
 
-        // Set initial image and string
         loadNextImage();
         fetchNextStringFromFirestore();
 

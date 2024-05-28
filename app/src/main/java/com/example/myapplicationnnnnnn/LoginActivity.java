@@ -160,7 +160,6 @@ public class LoginActivity extends AppCompatActivity {
                         dialog.dismiss();
                     }
                 });
-                //dialog.show();
 
                 if (dialog.getWindow() != null){
                     dialog.getWindow().setBackgroundDrawable(new ColorDrawable(0));
@@ -173,7 +172,6 @@ public class LoginActivity extends AppCompatActivity {
 
         sharedPreferences = getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
 
-        // Restore saved login credentials if "Remember Me" is checked
         boolean rememberMeChecked = sharedPreferences.getBoolean(KEY_REMEMBER_ME, false);
         if (rememberMeChecked) {
             String savedUsername = sharedPreferences.getString(KEY_USERNAME, "");
@@ -187,7 +185,6 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
-                    // Save login credentials if "Remember Me" is checked
                     String username = loginUsername.getText().toString().trim();
                     String password = loginPassword.getText().toString().trim();
 
@@ -197,7 +194,6 @@ public class LoginActivity extends AppCompatActivity {
                     editor.putBoolean(KEY_REMEMBER_ME, true);
                     editor.apply();
                 } else {
-                    // Clear saved login credentials if "Remember Me" is unchecked
                     SharedPreferences.Editor editor = sharedPreferences.edit();
                     editor.remove(KEY_USERNAME);
                     editor.remove(KEY_PASSWORD);
@@ -243,11 +239,7 @@ public class LoginActivity extends AppCompatActivity {
                     public void onSuccess(AuthResult authResult) {
                         handleLoginSuccess();
                     }
-//                }).addOnFailureListener(new OnFailureListener() {
-//                    @Override
-//                    public void onFailure(@NonNull Exception e) {
-//                        Toast.makeText(LoginActivity.this, "Auto Login Failed", Toast.LENGTH_SHORT).show();
-//                    }
+
                 });
     }
 
